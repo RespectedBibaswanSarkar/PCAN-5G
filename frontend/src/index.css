@@ -1,0 +1,348 @@
+:root {
+  --neon-red: #ff3131;
+  --neon-red-glow: rgba(255, 49, 49, 0.4);
+  --glass-bg: rgba(10, 5, 5, 0.8);
+  --glass-border: rgba(255, 49, 49, 0.15);
+  --bg-dark: #020202;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: #fff;
+  margin: 0;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-panel:hover {
+  border-color: var(--neon-red-glow);
+  box-shadow: 0 15px 45px rgba(255, 49, 49, 0.1);
+}
+
+.neon-text {
+  color: var(--neon-red);
+  text-shadow: 0 0 15px var(--neon-red-glow);
+  letter-spacing: -0.05em;
+}
+
+.neon-border {
+  border: 1px solid var(--neon-red);
+  box-shadow: 0 0 15px var(--neon-red-glow);
+}
+
+.neon-button {
+  background: rgba(255, 49, 49, 0.05);
+  color: #fff;
+  border: 1px solid var(--neon-red);
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.neon-button:hover:not(:disabled) {
+  background: var(--neon-red);
+  box-shadow: 0 0 30px var(--neon-red);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.neon-button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: #333;
+}
+
+.grid-bg {
+  background-color: var(--bg-dark);
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255, 49, 49, 0.1) 0%, transparent 50%),
+    linear-gradient(rgba(255, 49, 49, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 49, 49, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 50px 50px, 50px 50px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050505;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-red);
+}
+
+@keyframes pulse-soft {
+  0% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s infinite ease-in-out;
+}
+
+/* Enhanced Styling for Professional Appearance */
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Typography enhancements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Chart container styling */
+.recharts-surface {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+/* Animations */
+@keyframes slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-pulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 49, 49, 0.3);
+  }
+
+  50% {
+    box-shadow: 0 0 40px rgba(255, 49, 49, 0.6);
+  }
+}
+
+/* Utility animations */
+.animate-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.slide-in-from-left-2 {
+  animation: slide-in-left 0.3s ease-out;
+}
+
+.slide-in-from-right-2 {
+  animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Enhanced Glass Panel */
+.glass-panel {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-panel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 49, 49, 0.5), transparent);
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .glass-panel {
+    border-radius: 16px;
+  }
+
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-panel {
+    border-radius: 12px;
+    padding: 16px;
+  }
+
+  body {
+    font-size: 13px;
+  }
+
+  .neon-text {
+    font-size: 24px;
+  }
+
+  .grid-bg {
+    background-size: 100% 100%, 40px 40px, 40px 40px;
+  }
+}
+
+/* Network Topology animations */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 0.2;
+  }
+}
+
+.pulse-anim {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Interactive elements */
+button,
+input[type="number"],
+input[type="text"] {
+  transition: all 0.2s ease;
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+input:focus {
+  box-shadow: 0 0 20px rgba(255, 49, 49, 0.2);
+}
+
+/* Badge styling */
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-warning {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Loading states */
+.loading-bar {
+  background: linear-gradient(90deg, #ff3131, #fbbf24);
+  box-shadow: 0 0 20px rgba(255, 49, 49, 0.5);
+  border-radius: 10px;
+  height: 6px;
+}
+
+/* Data visualization improvements */
+.chart-container {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stat-value {
+  font-family: 'IBM Plex Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
+}
+
+/* Tooltip styling */
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-tooltip {
+  background: rgba(26, 26, 26, 0.95) !important;
+  border: 1px solid rgba(255, 49, 49, 0.3) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+.recharts-tooltip-label {
+  color: #fff !important;
+  font-weight: 600;
+}
+
+.recharts-tooltip-item {
+  color: #3b82f6 !important;
+}

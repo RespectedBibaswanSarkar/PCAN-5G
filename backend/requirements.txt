@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+pandas
+torch
+networkx
+matplotlib
+scipy
+pydantic
+python-multipart
+websockets
