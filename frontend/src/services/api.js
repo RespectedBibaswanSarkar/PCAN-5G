@@ -1,10 +1,12 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8000';
-const WS_BASE_URL = 'ws://localhost:8000';
+const host = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+const API_BASE_URL = `http://${host}:8000`;
+const WS_BASE_URL = `ws://${host}:8000`;
 
 const api = axios.create({
     baseURL: API_BASE_URL,
+    timeout: 6000,
     headers: {
         'Content-Type': 'application/json',
     },
@@ -57,6 +59,30 @@ export const toggleNode = async (nodeId, active) => {
         node_id: nodeId,
         active: active
     });
+    return response.data;
+};
+
+// ─────────────────────────────────────────────
+// RF Mode API Endpoints (NEW)
+// ─────────────────────────────────────────────
+
+export const getRFMode = async () => {
+    const response = await api.get('/rf/mode');
+    return response.data;
+};
+
+export const setRFMode = async (mode) => {
+    const response = await api.post('/rf/mode', { mode });
+    return response.data;
+};
+
+export const getRFMetrics = async () => {
+    const response = await api.get('/rf/metrics');
+    return response.data;
+};
+
+export const getNodePipeline = async (nodeId) => {
+    const response = await api.get(`/rf/pipeline/${nodeId}`);
     return response.data;
 };
 
@@ -167,5 +193,3 @@ export class WebSocketManager {
 }
 
 export default api;
-
-

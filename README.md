@@ -24,18 +24,45 @@ The system is deployed as an interactive **real-time web dashboard** where you c
 
 ---
 
+## 🔬 Research Documentation Layer [NEW]
+
+PCAN-5G is now augmented with a comprehensive, research-backed documentation layer that maps every core module to established academic literature.
+
+### 📚 Core Academic Papers (Simulated Foundations)
+The platform's architecture and logic are grounded in the following provided foundational works:
+
+1.  **SDN Architecture**: Kreutz et al., *“A Survey on Software-Defined Networking”* (2015)
+2.  **Congestion Control**: Michael Welzl, *“Network Congestion Control: A Survey”* (2005)
+3.  **Wireless ML**: H. Ye et al., *“The Role of Machine Learning in Future Wireless Networks”* (2018)
+4.  **RL Routing**: Boyan & Littman, *“Q-Routing: A Reinforcement Learning Approach to Routing”* (1994)
+5.  **5G Systems**: Theodore S. Rappaport et al., *“5G Wireless Communication Systems”* (2013)
+6.  **Network Slicing**: Xiaofei Zhou et al., *“Network Slicing for 5G”* (2017)
+7.  **Graph Modeling**: Albert Mestres et al., *“RouteNet: Leveraging Graph Neural Networks”* (2019)
+8.  **DRL Survey**: Y. Sun et al., *“Deep Reinforcement Learning for Networking: A Survey”* (2019)
+9.  **6G Vision**: IEEE, *“AI-Native 6G Networks”* (2023–2024)
+
+### 📂 High-Fidelity Documentation
+| Document | Description |
+| :--- | :--- |
+| **[System Overview](docs/SYSTEM_OVERVIEW.md)** | High-level research context and system objectives. |
+| **[Module Mapping](docs/MODULE_TO_RESEARCH_MAP.md)** | File-by-file link between code and academic concepts. |
+| **[Foundations](docs/RESEARCH_FOUNDATIONS.md)** | Deep-dive into SDN, DRL, and 5G Slicing theory. |
+| **[Architecture](docs/ARCHITECTURE.md)** | Layered system design (Simulation, Logic, Control). |
+| **[Process Flow](docs/PROCESS_FLOW.md)** | Operational lifecycle research link (Init → Act → Reward). |
+| **[Future Roadmap](docs/FUTURE_EXTENSIONS.md)** | Literature-backed theoretical extensions (GNNs, 6G). |
+
+---
+
 ## Key Features
 
 | Feature | Description |
-|---|---|
-| **Cross-Layer State** | PHY (RSRP/SINR) + Network (queue lengths) + Resource (BW alloc) + Traffic load fused into a single 21-dim state vector |
+| :--- | :--- |
+| **Research Layer** | **Fully mapped documentation layer linking code to 9 specific academic papers.** |
+| **Cross-Layer State** | PHY (RSRP/SINR) + Network (queue lengths) + Resource (BW alloc) + Traffic load fused into a single state vector |
 | **Joint Action Space** | Single discrete action controls both routing topology AND slice bandwidth delta simultaneously |
-| **LSTM Predictor** | Auxiliary LSTM trained alongside DQN — predicts next-step traffic, appended to state for proactive decisions |
-| **Custom Reward** | Composite: `2×Throughput − 1×Latency − 5×PacketLoss + 3×Fairness` across all slices |
-| **Live Dashboard** | React + Recharts frontend with WebSocket streaming — see rewards, latency, and topology in real time |
-| **Node Fault Simulation** | Toggle any network node active/inactive from the UI or API to simulate failure scenarios |
-
----
+| **LSTM Predictor** | Auxiliary LSTM predicts next-step traffic for proactive congestion avoidance (Ye et al., 2018) |
+| **RF Digital Twin** | Realistic RF signal layer (Hardware/Filter/Amp/Oscillator) based on 5G PHY constraints |
+| **Live Dashboard** | React + WebSocket streaming for real-time training and metric visualization |
 
 ## Algorithm: X-DQN
 
@@ -177,33 +204,32 @@ Then open: **http://localhost:5173**
 
 ```
 .
+├── docs/                     # NEW: Research Documentation Layer
+│   ├── SYSTEM_OVERVIEW.md    # High-level architecture mapping
+│   ├── MODULE_TO_RESEARCH_MAP.md # Module-to-Paper mapping
+│   ├── RESEARCH_FOUNDATIONS.md # Theoretical deep-dive
+│   ├── FUTURE_EXTENSIONS.md  # Academic roadmap
+│   ├── ARCHITECTURE.md       # Layered system design
+│   └── PROCESS_FLOW.md       # Lifecycle research link
+│
 ├── backend/
-│   ├── main.py               # FastAPI app — REST + WebSocket endpoints
-│   ├── agent.py              # XDQNAgent: QNetwork + LSTM CongestionPredictor
-│   ├── environment.py        # FiveGEnvironment: C-RAN simulation + reward
-│   ├── experiment_engine.py  # Controlled baseline vs. optimized experiments
-│   ├── baseline_simulator.py # Static routing baseline (no AI)
-│   ├── graph_generator.py    # IEEE-standard publication-quality graph output
-│   ├── data_logger.py        # Per-timestep CSV logging (latency, loss, SINR...)
-│   ├── parameter_manager.py  # Runtime experiment parameter control
-│   └── requirements.txt
+│   ├── hardware/             # Physical Layer abstraction (Signal, Filter, Amp...)
+│   ├── main.py               # FastAPI app — SDN Controller
+│   ├── agent.py              # XDQNAgent: RL + LSTM Prediction
+│   ├── environment.py        # FiveGEnvironment: Data Plane Simulation
+│   ├── requirements.txt
+│   └── ...
 │
 ├── frontend/
 │   ├── src/
-│   │   ├── App.jsx           # Main dashboard layout
 │   │   ├── components/
-│   │   │   ├── NetworkTopology.jsx   # Interactive D3-style topology renderer
-│   │   │   ├── RealtimeCharts.jsx    # Live metric charts (Recharts)
-│   │   │   └── ParameterControl.jsx  # Runtime parameter sliders
-│   │   └── services/
-│   │       └── api.js        # Axios + WebSocketManager
-│   ├── package.json
-│   └── vite.config.js
+│   │   │   ├── RFDashboard.jsx      # RF Signal pipeline visualization
+│   │   │   ├── NetworkTopology.jsx  # Waveguide pipe rendering
+│   │   │   └── ...
+│   └── ...
 │
-├── start_all.py              # One-click launcher (Python)
-├── start_all.bat             # One-click launcher (Windows Batch)
-├── start_all.ps1             # One-click launcher (PowerShell)
-└── LICENSE
+├── start_all.py              # One-click launcher
+└── ...
 ```
 
 ---

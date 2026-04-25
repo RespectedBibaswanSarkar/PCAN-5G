@@ -12,14 +12,14 @@ def print_banner():
     print("  Baseline vs Optimized Comparison with IEEE-Standard Graph Generation")
     print("="*80)
     print("\n  NEW FEATURES:")
-    print("    [NEW] Dual-phase controlled experiments (Baseline vs PCAN-5G)")
-    print("    [NEW] Identical initial conditions for fair comparison")
-    print("    [NEW] Comprehensive data logging to CSV")
-    print("    [NEW] IEEE-standard publication-quality graphs (PNG @ 300 DPI, PDF)")
-    print("    [NEW] Multi-scenario automated experiments (low/medium/high traffic)")
-    print("    [NEW] Manual parameter control (traffic, thresholds, failure rates)")
-    print("    [NEW] REST API for experiment orchestration")
-    print("    [NEW] Real-time topology visualization")
+    print("    ✓ Dual-phase controlled experiments (Baseline vs PCAN-5G)")
+    print("    ✓ Identical initial conditions for fair comparison")
+    print("    ✓ Comprehensive data logging to CSV")
+    print("    ✓ IEEE-standard publication-quality graphs (PNG @ 300 DPI, PDF)")
+    print("    ✓ Multi-scenario automated experiments (low/medium/high traffic)")
+    print("    ✓ Manual parameter control (traffic, thresholds, failure rates)")
+    print("    ✓ REST API for experiment orchestration")
+    print("    ✓ Real-time topology visualization")
     print("\n" + "="*80 + "\n")
 
 
@@ -92,9 +92,9 @@ def run_commands():
             check=True,
             capture_output=True
         )
-        print("       [OK] Python dependencies checked")
+        print("       ✓ Python dependencies checked")
     except Exception as e:
-        print(f"       [WARN] Warning: Could not verify Python dependencies: {e}")
+        print(f"       ⚠ Warning: Could not verify Python dependencies: {e}")
 
     try:
         # Install Node dependencies
@@ -106,9 +106,9 @@ def run_commands():
             check=True,
             capture_output=True
         )
-        print("       [OK] Node.js dependencies checked")
+        print("       ✓ Node.js dependencies checked")
     except Exception as e:
-        print(f"       [WARN] Warning: Could not verify Node dependencies: {e}")
+        print(f"       ⚠ Warning: Could not verify Node dependencies: {e}")
 
     # Start Backend
     print("  [1/3] Launching FastAPI Backend (Port 8000)...")
@@ -118,9 +118,9 @@ def run_commands():
             cwd=backend_dir,
             creationflags=subprocess.CREATE_NEW_CONSOLE if sys.platform == "win32" else 0
         )
-        print("       [OK] Backend starting (new window)...")
+        print("       ✓ Backend starting (new window)...")
     except Exception as e:
-        print(f"       [FAIL] Failed to start backend: {e}")
+        print(f"       ✗ Failed to start backend: {e}")
         sys.exit(1)
 
     # Give backend time to start
@@ -136,9 +136,9 @@ def run_commands():
             shell=True,
             creationflags=subprocess.CREATE_NEW_CONSOLE if sys.platform == "win32" else 0
         )
-        print("       [OK] Frontend starting (new window)...")
+        print("       ✓ Frontend starting (new window)...")
     except Exception as e:
-        print(f"       [FAIL] Failed to start frontend: {e}")
+        print(f"       ✗ Failed to start frontend: {e}")
         backend_process.terminate()
         sys.exit(1)
 
@@ -151,7 +151,7 @@ def run_commands():
     print_quick_start()
 
     print("="*80)
-    print("  [OK] All services started successfully!")
+    print("  ✓ All services started successfully!")
     print("  Press Ctrl+C to shutdown all services")
     print("="*80 + "\n")
 
@@ -180,11 +180,11 @@ def run_commands():
             backend_process.kill()
 
         try:
-            backend_process.wait(timeout=5)
+            frontend_process.wait(timeout=5)
         except subprocess.TimeoutExpired:
             frontend_process.kill()
 
-        print("  [OK] All services stopped")
+        print("  ✓ All services stopped")
         print("  Output files preserved in: ./logs and ./graphs")
         print("="*80 + "\n")
         sys.exit(0)

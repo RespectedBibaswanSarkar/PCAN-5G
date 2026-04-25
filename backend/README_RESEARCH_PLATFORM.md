@@ -20,6 +20,18 @@ This is a **research-grade experimental platform** for simulating 5G networks wi
   - Dynamic resource allocation
   - Cross-layer optimization
 
+### ✓ High-Fidelity RF Mode (Digital Twin)
+
+- **Physical Signal Model**: Realistic frequency, amplitude, and phase tracking.
+- **Hardware Abstraction**: Per-node signal pipelines (Filters, Amplifiers, Oscillators).
+- **Physical Propagation**: Waveguide-level simulation of distance-based attenuation and interference.
+
+### ✓ Research Documentation Layer
+
+- **Academic Alignment**: Fully mapped to foundational papers (SDN, 5G, RL, GNN).
+- **Theoretical Foundations**: Deep-dives into established networking literature.
+- **Operational Lifecycle**: Process-flow linking every backend step to research concepts.
+
 ### ✓ Controlled Experiment Engine
 
 - **Identical Initial Conditions**: Both phases run on the same topology, traffic patterns, and node configuration
