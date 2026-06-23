@@ -280,7 +280,7 @@ Generated graphs (PNG + PDF, 300 DPI) are saved to `backend/graphs/` — suitabl
 ## Author
 
 **Bibaswan Sarkar**  
-M.Tech, IIIT Manipur — Semester II  
+B.Tech, IIIT Manipur — Semester II  
 [GitHub: @RespectedBibaswanSarkar](https://github.com/RespectedBibaswanSarkar)
 
 ---
